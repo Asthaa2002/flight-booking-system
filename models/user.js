@@ -8,6 +8,21 @@ name: {
 email:{
 type:String
 },
+location: {
+    type:String
+},
+
+imageFile: {
+    name: {
+      type: String,
+    },
+    url: {
+      type: String,
+    },
+    path: {
+      type: String,
+    },
+  },
 
 },
 {timestamps:true}
