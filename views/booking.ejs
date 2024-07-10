@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   
+    <title>Booking Confirmation</title>
+</head>
+<body>
+    <h1>Booking Confirmation</h1>
+    <p>Dear <%= user.name %>,</p>
+    <p>Your booking has been confirmed with the following details:</p>
+    <ul>
+        <li>Flight Number: <%= flight.flightNumber %></li>
+        <li>Airline: <%= flight.airline %></li>
+        <li>Date: <%= flight.date %></li>
+        <li>Departure: <%= flight.departure %></li>
+        <li>Arrival: <%= flight.arrival %></li>
+        
+    </ul>
+</body>
+</html>
