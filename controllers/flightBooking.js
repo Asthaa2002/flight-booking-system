@@ -66,15 +66,23 @@ export const bookFlight = async(req,res)=> {
       path.join(__dirname, '../views/booking.ejs'), 
       { user, flight }
   );
+  const pdfOptions = {
+    format: "A4",
+    border: { top: "0.5in", right: "0.5in", bottom: "0.5in", left: "0.5in" },
+  };
     // Convert HTML to PDF
-    pdf.create(html).toBuffer((err, buffer) => {
-      if (err) {
-        return res.status(500).json({ message: "Error generating PDF." });
+    pdf.create(html,pdfOptions) 
+    .toFile(
+      path.join(__dirname, "../public/booking.pdf"),
+      async (err, res) => {
+        if (err) return console.log(err);
+        console.log(res);
       }
+    );
 
       // Configure Nodemailer
       const transporter = nodemailer.createTransport({
-        service: 'Gmail', // or another email service
+        service: 'Gmail',
         auth: {
           user: process.env.GMAIL_USER,
           pass: process.env.GMAIL_PASS
@@ -101,7 +109,7 @@ export const bookFlight = async(req,res)=> {
         }
         return res.status(200).json({ message: "Booking created and email sent successfully!", result });
       });
-    });
+    // });
     }
     catch(err){
         console.log(err);
